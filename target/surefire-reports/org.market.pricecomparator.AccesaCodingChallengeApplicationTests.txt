@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.market.pricecomparator.AccesaCodingChallengeApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.500 s -- in org.market.pricecomparator.AccesaCodingChallengeApplicationTests

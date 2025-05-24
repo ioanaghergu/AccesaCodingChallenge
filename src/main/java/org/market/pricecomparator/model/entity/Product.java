@@ -4,10 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.market.pricecomparator.model.enums.MeasurementUnit;
 
 import java.util.ArrayList;
@@ -20,6 +17,7 @@ import java.util.List;
 @Table(name = "products", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "name", "brand", "package_quantity", "unit"})
 })
+@ToString(exclude = {"priceEntries","shoppingLists", "discounts", "priceAlerts"})
 public class Product {
 
     @Id
@@ -52,10 +50,10 @@ public class Product {
     @NotBlank(message = "Product currency required")
     private String currency;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PriceEntry> priceEntries = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Discount> discounts = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
@@ -63,5 +61,15 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<PriceAlert> priceAlerts = new ArrayList<>();
+
+    public  void addPriceEntry(PriceEntry priceEntry) {
+        priceEntries.add(priceEntry);
+        priceEntry.setProduct(this);
+    }
+
+    public  void addDiscount(Discount discount) {
+        discounts.add(discount);
+        discount.setProduct(this);
+    }
 
 }

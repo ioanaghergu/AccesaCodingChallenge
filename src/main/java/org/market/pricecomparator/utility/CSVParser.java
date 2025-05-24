@@ -3,10 +3,9 @@ package org.market.pricecomparator.utility;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
-import com.opencsv.ICSVParser;
+
 import com.opencsv.exceptions.CsvValidationException;
-import jakarta.transaction.Transactional;
-import org.apache.commons.collections.map.HashedMap;
+
 import org.market.pricecomparator.model.entity.Discount;
 import org.market.pricecomparator.model.entity.PriceEntry;
 import org.market.pricecomparator.model.entity.Product;
@@ -20,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -228,7 +228,15 @@ public class CSVParser {
                    priceEntry.setEntryDate(entryDate);
                    priceEntryRepository.save(priceEntry);
 
+                   store.addPriceEntry(priceEntry);
+                   product.addPriceEntry(priceEntry);
+
                    logger.info("Price entry for product {} in store {} created", product.getName(), store.getName());
+               }
+               else {
+                   store.addPriceEntry(existingPriceEntry.get());
+                   product.addPriceEntry(existingPriceEntry.get());
+
                }
 
             }
@@ -332,9 +340,15 @@ public class CSVParser {
                     newDiscount.setPercentage(recordPercentage);
                     discountRepository.save(newDiscount);
 
+                    store.addDiscount(newDiscount);
+                    product.addDiscount(newDiscount);
+
                     logger.info("Discount for product {} in the store {} created", product.getName(), store.getName());
                 }
-
+                else {
+                    store.addDiscount(existingDiscount.get());
+                    product.addDiscount(existingDiscount.get());
+                }
 
             }
         } catch (CsvValidationException e) {

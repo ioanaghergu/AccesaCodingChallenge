@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 @Table(name = "price_alerts", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"user_id", "product_id"})
 })
+@ToString(exclude = {"user", "product"})
 public class PriceAlert {
 
     @Id

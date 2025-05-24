@@ -13,4 +13,5 @@ import java.util.Optional;
 @Repository
 public interface PriceEntryRepository extends JpaRepository<PriceEntry, Long> {
     Optional<PriceEntry> findPriceEntryByProductAndStoreAndEntryDate(Product product, Store store, LocalDate entryDate);
+    Optional<PriceEntry> findTopByProductAndStoreOrderByEntryDateDesc(Product product, Store store);
 }

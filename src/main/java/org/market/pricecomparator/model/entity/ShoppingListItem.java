@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "shopping_list_items", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"shopping_list_id", "product_id"})
 })
+@ToString(exclude = {"shoppingList", "product"})
 public class ShoppingListItem {
 
     @Id
