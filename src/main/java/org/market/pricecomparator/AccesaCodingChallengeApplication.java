@@ -1,6 +1,8 @@
 package org.market.pricecomparator;
 
 import org.market.pricecomparator.utility.CSVParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
@@ -11,12 +13,17 @@ import java.io.InputStream;
 
 
 @SpringBootApplication
-public class AccesaCodingChallengeApplication {
+public class AccesaCodingChallengeApplication implements CommandLineRunner {
+
+    @Autowired
+    private CSVParser csvParser;
 
     public static void main(String[] args) {
         SpringApplication.run(AccesaCodingChallengeApplication.class, args);
+    }
 
-        CSVParser csvParser = new CSVParser();
+    @Override
+    public void run(String... args) throws Exception {
         Resource resource = new ClassPathResource("data/lidl_2025-05-01.csv");
         try {
             InputStream inputStream = resource.getInputStream();
@@ -24,8 +31,5 @@ public class AccesaCodingChallengeApplication {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
-
 }

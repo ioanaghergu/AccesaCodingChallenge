@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PriceEntryRepository extends JpaRepository<PriceEntry, Long> {
-    void savePriceEntryToDatabase(PriceEntry priceEntry);
+
 }

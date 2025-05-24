@@ -10,10 +10,9 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 
 @Component
-@NoArgsConstructor
 public class CSVParser {
 
-    public static void parseCSV(InputStream inputStream) {
+    public void parseCSV(InputStream inputStream) {
 
         com.opencsv.CSVParser parser = new CSVParserBuilder()
                 .withSeparator(';')

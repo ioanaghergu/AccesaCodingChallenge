@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ShoppingListRepository extends JpaRepository<ShoppingList, Long> {
-    void saveShoppingListToDatabase(ShoppingList shoppingList);
     List<ShoppingList> getShoppingListsByBasketId(Long basketId);
 }
