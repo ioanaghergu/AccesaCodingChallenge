@@ -28,4 +28,10 @@ public class DiscountController {
         List<StoreDTO> bestDiscountsPerStore = discountService.getBestDiscountsPerStore();
         return ResponseEntity.ok(bestDiscountsPerStore);
     }
+
+    @GetMapping("/newDiscounts")
+    public ResponseEntity<List<DiscountDTO>> getNewDiscounts() {
+        List<DiscountDTO> newDiscounts = discountService.getNewDiscounts();
+        return ResponseEntity.ok(newDiscounts);
+    }
 }

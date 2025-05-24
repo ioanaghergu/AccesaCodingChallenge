@@ -24,6 +24,7 @@ public class AccesaCodingChallengeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
         /*
         try {
             Resource resource = new ClassPathResource("data");
@@ -32,6 +33,8 @@ public class AccesaCodingChallengeApplication implements CommandLineRunner {
 
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }*/
+        }
+        */
+
     }
 }

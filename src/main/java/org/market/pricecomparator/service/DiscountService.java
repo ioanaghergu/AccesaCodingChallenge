@@ -102,5 +102,24 @@ public class DiscountService {
         return result;
     }
 
+    public List<DiscountDTO> getNewDiscounts() {
+        LocalDate todayDate = LocalDate.of(2025, 5, 8);
+        List<Discount> activeDiscounts = discountRepository.findNewlyAddedDiscounts(todayDate);
+
+        if(activeDiscounts.isEmpty()) {
+            throw new ResourceNotFound("There are no active discounts");
+        }
+
+        for(Discount discount : activeDiscounts) {
+            Product product = productRepository.findById(discount.getProduct().getId()).orElse(null);
+            discount.setProduct(product);
+            Store store = storeRepository.findById(discount.getStore().getId()).orElse(null);
+            discount.setStore(store);
+        }
+
+        return activeDiscounts.stream().map(discountMapper::toDiscountDTO).collect(Collectors.toList());
+
+    }
+
 
 }

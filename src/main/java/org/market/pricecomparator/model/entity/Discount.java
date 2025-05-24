@@ -46,4 +46,6 @@ public class Discount {
     @NotNull(message = "End date of discount required")
     @Future(message = "End date of discount must be in the future")
     private LocalDate endDate;
+
+    private LocalDate entryDate;
 }

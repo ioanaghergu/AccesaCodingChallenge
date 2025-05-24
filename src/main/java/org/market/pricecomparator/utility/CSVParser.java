@@ -127,7 +127,7 @@ public class CSVParser {
     private void processDiscountFile(Path filePath, CSVFileInfo csvFileInfo){
         try {
             logger.info("Processing discount file {}", filePath.getFileName());
-            parseDiscountFile(filePath, csvFileInfo.getStoreName());
+            parseDiscountFile(filePath, csvFileInfo.getStoreName(), csvFileInfo.getEntryDate());
         } catch (IOException e) {
             logger.error("Error reading discount file {}", filePath.getFileName(), e);
         } catch (Exception e) {
@@ -250,7 +250,7 @@ public class CSVParser {
      * saves discounts for each product in the file
      */
     @Transactional
-    public void parseDiscountFile(Path filePath, String storeName) throws IOException {
+    public void parseDiscountFile(Path filePath, String storeName, LocalDate entryDate) throws IOException {
         Store store = new Store();
         Product product = new Product();
 
@@ -338,6 +338,7 @@ public class CSVParser {
                     newDiscount.setStartDate(recordStartDate);
                     newDiscount.setEndDate(recordEndDate);
                     newDiscount.setPercentage(recordPercentage);
+                    newDiscount.setEntryDate(entryDate);
                     discountRepository.save(newDiscount);
 
                     store.addDiscount(newDiscount);

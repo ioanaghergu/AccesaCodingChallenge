@@ -4,6 +4,7 @@ import org.market.pricecomparator.model.entity.Discount;
 import org.market.pricecomparator.model.entity.Product;
 import org.market.pricecomparator.model.entity.Store;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -16,6 +17,9 @@ public interface DiscountRepository extends JpaRepository<Discount, Long> {
 
     Optional<Discount> findByProductAndStoreAndStartDateAndEndDate(Product product, Store store, LocalDate startDate, LocalDate endDate);
     List<Discount> findByStartDateBeforeAndEndDateAfter(LocalDate startDate, LocalDate endDate);
-    Optional<Discount> findTopByStoreOrderByPercentageDesc(Store store);
-    List<Discount> findAllProductIdByPercentage(BigDecimal percentage);
+
+    @Query("""
+    SELECT d FROM Discount d WHERE d.entryDate=:date and d.endDate >= :date
+""")
+    List<Discount> findNewlyAddedDiscounts(LocalDate date);
 }
