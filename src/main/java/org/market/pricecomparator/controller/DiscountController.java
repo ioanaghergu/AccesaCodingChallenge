@@ -1,6 +1,7 @@
 package org.market.pricecomparator.controller;
 
 import org.market.pricecomparator.dto.DiscountDTO;
+import org.market.pricecomparator.dto.ProductDTO;
 import org.market.pricecomparator.dto.StoreDTO;
 import org.market.pricecomparator.model.entity.Store;
 import org.market.pricecomparator.service.DiscountService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/discounts")
@@ -24,8 +26,8 @@ public class DiscountController {
     }
 
     @GetMapping("/bestDiscounts")
-    public ResponseEntity<List<StoreDTO>> getBestDiscounts() {
-        List<StoreDTO> bestDiscountsPerStore = discountService.getBestDiscountsPerStore();
+    public ResponseEntity<Map<String, List<ProductDTO>>> getBestDiscounts() {
+        Map<String, List<ProductDTO>> bestDiscountsPerStore = discountService.getBestDiscountsPerStore();
         return ResponseEntity.ok(bestDiscountsPerStore);
     }
 
