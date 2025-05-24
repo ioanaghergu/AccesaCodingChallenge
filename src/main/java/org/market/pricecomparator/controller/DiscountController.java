@@ -2,8 +2,6 @@ package org.market.pricecomparator.controller;
 
 import org.market.pricecomparator.dto.DiscountDTO;
 import org.market.pricecomparator.dto.ProductDTO;
-import org.market.pricecomparator.dto.StoreDTO;
-import org.market.pricecomparator.model.entity.Store;
 import org.market.pricecomparator.service.DiscountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +30,8 @@ public class DiscountController {
     }
 
     @GetMapping("/newDiscounts")
-    public ResponseEntity<List<DiscountDTO>> getNewDiscounts() {
-        List<DiscountDTO> newDiscounts = discountService.getNewDiscounts();
+    public ResponseEntity<Map<String,List<DiscountDTO>>> getNewDiscounts() {
+        Map<String, List<DiscountDTO>> newDiscounts = discountService.getNewDiscounts();
         return ResponseEntity.ok(newDiscounts);
     }
 }

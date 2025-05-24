@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-24T18:12:07+0300",
+    date = "2025-05-24T22:21:34+0300",
     comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 21.0.6 (Oracle Corporation)"
 )
 @Component
@@ -58,6 +58,7 @@ public class StoreMapperImpl implements StoreMapper {
         discountDTO.setPercentage( discount.getPercentage() );
         discountDTO.setStartDate( discount.getStartDate() );
         discountDTO.setEndDate( discount.getEndDate() );
+        discountDTO.setEntryDate( discount.getEntryDate() );
 
         return discountDTO;
     }
@@ -86,6 +87,7 @@ public class StoreMapperImpl implements StoreMapper {
         discount.setPercentage( discountDTO.getPercentage() );
         discount.setStartDate( discountDTO.getStartDate() );
         discount.setEndDate( discountDTO.getEndDate() );
+        discount.setEntryDate( discountDTO.getEntryDate() );
 
         return discount;
     }

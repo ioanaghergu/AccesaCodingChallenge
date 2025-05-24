@@ -9,9 +9,11 @@ org\market\pricecomparator\mapper\PriceEntryMapper.class
 org\market\pricecomparator\repository\StoreRepository.class
 org\market\pricecomparator\AccesaCodingChallengeApplication.class
 org\market\pricecomparator\mapper\DiscountMapperImpl.class
+org\market\pricecomparator\service\PriceEntryService.class
 org\market\pricecomparator\mapper\ProductMapper.class
 org\market\pricecomparator\model\entity\Discount.class
 org\market\pricecomparator\mapper\UserMapperImpl.class
+org\market\pricecomparator\dto\GraphPointDTO.class
 org\market\pricecomparator\utility\CSVParser$CSVFileInfo.class
 org\market\pricecomparator\model\entity\Store.class
 org\market\pricecomparator\model\entity\User.class
@@ -19,6 +21,7 @@ org\market\pricecomparator\dto\UserDTO.class
 org\market\pricecomparator\repository\ProductRepository.class
 org\market\pricecomparator\model\entity\ShoppingListItem.class
 org\market\pricecomparator\dto\PriceEntryDTO.class
+org\market\pricecomparator\exceptions\ResourceNotFound.class
 org\market\pricecomparator\mapper\ShoppingListMapperImpl.class
 org\market\pricecomparator\repository\ShoppingListRepository.class
 org\market\pricecomparator\controller\DiscountController.class
@@ -35,8 +38,10 @@ org\market\pricecomparator\mapper\ProductMapperImpl.class
 org\market\pricecomparator\repository\DiscountRepository.class
 org\market\pricecomparator\mapper\ShoppingListMapper.class
 org\market\pricecomparator\repository\PriceAlertRepository.class
+org\market\pricecomparator\controller\PriceEntryController.class
 org\market\pricecomparator\model\entity\Product.class
 org\market\pricecomparator\dto\PriceAlertDTO.class
+org\market\pricecomparator\exceptions\GlobalExceptionHandler.class
 org\market\pricecomparator\mapper\PriceAlertMapperImpl.class
 org\market\pricecomparator\model\enums\MeasurementUnit.class
 org\market\pricecomparator\dto\ProductDTO.class

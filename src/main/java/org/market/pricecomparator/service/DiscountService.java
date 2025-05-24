@@ -41,80 +41,76 @@ public class DiscountService {
 
     public Map<String, List<ProductDTO>> getBestDiscountsPerStore() {
 
-        //should be LocalDate.now(), but there are no results in the database for current day
-        LocalDate startDate = LocalDate.of(2025, 5, 10);
+        LocalDate today = LocalDate.now();
 
-        List<Discount> activeDiscounts = discountRepository.findByStartDateBeforeAndEndDateAfter(startDate, startDate);
+        List<Store> stores = storeRepository.findAll();
 
-        if(activeDiscounts.isEmpty()) {
-            throw new ResourceNotFound("There are no active discounts");
+        if(stores.isEmpty()){
+            throw new ResourceNotFound("No stores found");
         }
-
-        //each store is paired with their list of active discounts
-        Map<Store, List<Discount>> activeDiscountsByStore = activeDiscounts.stream()
-                .filter(discount -> discount.getStore() != null && discount.getPercentage() != null)
-                .collect(Collectors.groupingBy(Discount::getStore));
 
         Map<String, List<ProductDTO>> result = new HashMap<>();
 
-        for (Map.Entry<Store, List<Discount>> entry : activeDiscountsByStore.entrySet()) {
+        for (Store store : stores) {
+            List<Discount> activeDiscounts = discountRepository.findActiveDiscountsByStore(store.getId(), today);
 
-            Store store = entry.getKey();
-            List<Discount> storeDiscounts = entry.getValue();
-
-            if (storeDiscounts.isEmpty()) {
-                throw new RuntimeException("No active discounts for " + store.getName() + " store" );
+            if(activeDiscounts.isEmpty()){
+                throw new RuntimeException("No active discounts found for store: " + store.getName());
             }
 
-            //gets the highest discount percentage from the discounts of the current store
-            Optional<BigDecimal> maxPercentageOpt = storeDiscounts.stream()
-                    .map(Discount::getPercentage)
-                    .max(Comparator.naturalOrder());
 
-            if (maxPercentageOpt.isPresent()) {
-                BigDecimal maxPercentage = maxPercentageOpt.get();
 
-                //filters discounts based on the highest discount percentage
-                List<Discount> topPercentageDiscountsForStore = storeDiscounts.stream()
-                        .filter(d -> d.getPercentage().compareTo(maxPercentage) == 0)
-                        .collect(Collectors.toList());
+            BigDecimal maxDiscount = activeDiscounts.get(0).getPercentage();
+            Long maxDiscountId = activeDiscounts.get(0).getId();
 
-                List<Product> products = new ArrayList<>();
+            List<Product> products = productRepository.findByStoreAndDiscount(store.getId(), maxDiscountId);
 
-                for (Discount discount : topPercentageDiscountsForStore) {
-                    Product product = productRepository.findById(discount.getProduct().getId()).orElse(null);
-                    products.add(product);
-                }
 
-                List<ProductDTO> productDTOs = products.stream()
-                        .map(productMapper::toProductDTO)
-                        .collect(Collectors.toList());
+            if(products.isEmpty()){
+                throw new RuntimeException("No products found for store: " + store.getName());
+            }
 
-                if (!productDTOs.isEmpty()) {
-                    result.put(store.getName(), productDTOs);
-                }
+            List<ProductDTO> resultProducts = products.stream()
+                    .map(productMapper::toProductDTO)
+                    .collect(Collectors.toList());
+
+            if(!resultProducts.isEmpty()){
+                result.put(store.getName(), resultProducts);
             }
         }
 
         return result;
     }
 
-    public List<DiscountDTO> getNewDiscounts() {
+    public Map<String, List<DiscountDTO>> getNewDiscounts() {
+
+        //LocalDate today = LocalDate.now();
+
+        List<Store> stores = storeRepository.findAll();
+
+        if(stores.isEmpty()){
+            throw new ResourceNotFound("No stores found");
+        }
+
+        Map<String, List<DiscountDTO>> result = new HashMap<>();
+
         LocalDate todayDate = LocalDate.of(2025, 5, 8);
-        List<Discount> activeDiscounts = discountRepository.findNewlyAddedDiscounts(todayDate);
 
-        if(activeDiscounts.isEmpty()) {
-            throw new ResourceNotFound("There are no active discounts");
+        for(Store store : stores){
+            List<Discount> discounts = discountRepository.findNewlyAddedDiscountsByStore(store.getId(), todayDate);
+
+            if(discounts.isEmpty()){
+                throw new ResourceNotFound("No active discounts found for store: " + store.getName());
+            }
+
+            List<DiscountDTO> discountDTOs = discounts.stream()
+                            .map(discountMapper::toDiscountDTO)
+                                    .collect(Collectors.toList());
+
+            result.put(store.getName(), discountDTOs);
         }
 
-        for(Discount discount : activeDiscounts) {
-            Product product = productRepository.findById(discount.getProduct().getId()).orElse(null);
-            discount.setProduct(product);
-            Store store = storeRepository.findById(discount.getStore().getId()).orElse(null);
-            discount.setStore(store);
-        }
-
-        return activeDiscounts.stream().map(discountMapper::toDiscountDTO).collect(Collectors.toList());
+        return result;
 
     }
 
