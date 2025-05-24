@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.market.pricecomparator.model.enums.MeasurementUnit;
 
 import java.util.ArrayList;
@@ -62,4 +63,5 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<PriceAlert> priceAlerts = new ArrayList<>();
+
 }

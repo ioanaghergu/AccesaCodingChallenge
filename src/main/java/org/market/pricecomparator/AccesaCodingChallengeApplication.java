@@ -24,10 +24,11 @@ public class AccesaCodingChallengeApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Resource resource = new ClassPathResource("data/lidl_2025-05-01.csv");
         try {
-            InputStream inputStream = resource.getInputStream();
-            csvParser.parseCSV(inputStream);
+            Resource resource = new ClassPathResource("data");
+            String directorypath = resource.getFile().getAbsolutePath();
+            csvParser.processCSVDirectory(directorypath);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
