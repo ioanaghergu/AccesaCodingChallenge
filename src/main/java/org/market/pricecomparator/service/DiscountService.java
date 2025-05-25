@@ -2,7 +2,6 @@ package org.market.pricecomparator.service;
 
 import org.market.pricecomparator.dto.DiscountDTO;
 import org.market.pricecomparator.dto.ProductDTO;
-import org.market.pricecomparator.dto.StoreDTO;
 import org.market.pricecomparator.exceptions.ResourceNotFound;
 import org.market.pricecomparator.mapper.DiscountMapper;
 import org.market.pricecomparator.mapper.ProductMapper;
@@ -61,9 +60,8 @@ public class DiscountService {
 
 
             BigDecimal maxDiscount = activeDiscounts.get(0).getPercentage();
-            Long maxDiscountId = activeDiscounts.get(0).getId();
 
-            List<Product> products = productRepository.findByStoreAndDiscount(store.getId(), maxDiscountId);
+            List<Product> products = productRepository.findByStoreAndDiscount(store.getId(), maxDiscount);
 
 
             if(products.isEmpty()){
@@ -84,7 +82,7 @@ public class DiscountService {
 
     public Map<String, List<DiscountDTO>> getNewDiscounts() {
 
-        //LocalDate today = LocalDate.now();
+        LocalDate today = LocalDate.now();
 
         List<Store> stores = storeRepository.findAll();
 
@@ -94,10 +92,8 @@ public class DiscountService {
 
         Map<String, List<DiscountDTO>> result = new HashMap<>();
 
-        LocalDate todayDate = LocalDate.of(2025, 5, 8);
-
         for(Store store : stores){
-            List<Discount> discounts = discountRepository.findNewlyAddedDiscountsByStore(store.getId(), todayDate);
+            List<Discount> discounts = discountRepository.findNewlyAddedDiscountsByStore(store.getId(), today);
 
             if(discounts.isEmpty()){
                 throw new ResourceNotFound("No active discounts found for store: " + store.getName());
