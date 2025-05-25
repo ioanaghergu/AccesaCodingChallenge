@@ -6,7 +6,7 @@ This is a **Spring Boot** web application developed in **Java** using **Maven**,
 
 ## Project Structure
 
-The application is built upon a **layered architecture** to ensure a clear separation of concerns and promote maintainability. Core components include **JPA entities** for the data model, **Spring Data JPA repositories** for database interaction, a **service layer** encapsulating business logic, and **REST controllers** exposing the API. Between layers, data is exchanged through **DTOs** and **MapStruct mappers**. Data from CSV files is parsed on startup and mapped to objects to populate the **MySql** database. 
+The application is built upon a **layered architecture** to ensure a clear separation of concerns and promote maintainability. Core components include **JPA entities** for the data model, **Spring Data JPA repositories** for database interaction, a **service layer** encapsulating business logic, and **REST controllers** exposing the API. Between layers, data is exchanged through **DTOs** and **MapStruct mappers**. Data from CSV files is parsed on startup, mapped to entity objects, and used to populate the **MySQL** database. 
 
 
 ## How to Build and Run the Application
@@ -15,6 +15,7 @@ The application is built upon a **layered architecture** to ensure a clear separ
 
 * Java JDK (Version 17 or later)
 * Apache Maven
+* MySQL Server
 
 ### Build Steps
 
