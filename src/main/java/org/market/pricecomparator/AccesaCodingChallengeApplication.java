@@ -7,12 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 
 @SpringBootApplication
+@EnableScheduling
 public class AccesaCodingChallengeApplication implements CommandLineRunner {
 
     @Autowired
@@ -25,7 +26,7 @@ public class AccesaCodingChallengeApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        /*
+
         try {
             Resource resource = new ClassPathResource("data");
             String directorypath = resource.getFile().getAbsolutePath();
@@ -34,7 +35,7 @@ public class AccesaCodingChallengeApplication implements CommandLineRunner {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        */
+
 
     }
 }

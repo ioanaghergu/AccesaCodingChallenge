@@ -1,45 +1,75 @@
 package org.market.pricecomparator.mapper;
 
 import javax.annotation.processing.Generated;
-import org.market.pricecomparator.dto.PriceAlertDTO;
+import org.market.pricecomparator.dto.PriceAlertRequestDTO;
+import org.market.pricecomparator.dto.PriceAlertResponseDTO;
 import org.market.pricecomparator.model.entity.PriceAlert;
+import org.market.pricecomparator.model.entity.Product;
+import org.market.pricecomparator.model.entity.User;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-24T23:35:35+0300",
+    date = "2025-05-25T11:55:07+0300",
     comments = "version: 1.6.0.Beta1, compiler: javac, environment: Java 23.0.2 (Azul Systems, Inc.)"
 )
 @Component
 public class PriceAlertMapperImpl implements PriceAlertMapper {
 
     @Override
-    public PriceAlertDTO toPriceAlertDTO(PriceAlert priceAlert) {
+    public PriceAlertResponseDTO toPriceAlertResponseDTO(PriceAlert priceAlert) {
         if ( priceAlert == null ) {
             return null;
         }
 
-        PriceAlertDTO priceAlertDTO = new PriceAlertDTO();
+        PriceAlertResponseDTO priceAlertResponseDTO = new PriceAlertResponseDTO();
 
-        priceAlertDTO.setId( priceAlert.getId() );
-        priceAlertDTO.setTargetPrice( priceAlert.getTargetPrice() );
-        priceAlertDTO.setIsActive( priceAlert.getIsActive() );
+        priceAlertResponseDTO.setProductId( priceAlertProductId( priceAlert ) );
+        priceAlertResponseDTO.setProductName( priceAlertProductName( priceAlert ) );
+        priceAlertResponseDTO.setUserId( priceAlertUserId( priceAlert ) );
+        priceAlertResponseDTO.setId( priceAlert.getId() );
+        priceAlertResponseDTO.setTargetPrice( priceAlert.getTargetPrice() );
+        priceAlertResponseDTO.setIsActive( priceAlert.getIsActive() );
 
-        return priceAlertDTO;
+        return priceAlertResponseDTO;
     }
 
     @Override
-    public PriceAlert toPriceAlert(PriceAlertDTO priceAlertDTO) {
-        if ( priceAlertDTO == null ) {
+    public PriceAlertRequestDTO toPriceAlertRequestDTO(PriceAlertResponseDTO priceAlertResponseDTO) {
+        if ( priceAlertResponseDTO == null ) {
             return null;
         }
 
-        PriceAlert priceAlert = new PriceAlert();
+        PriceAlertRequestDTO priceAlertRequestDTO = new PriceAlertRequestDTO();
 
-        priceAlert.setId( priceAlertDTO.getId() );
-        priceAlert.setTargetPrice( priceAlertDTO.getTargetPrice() );
-        priceAlert.setIsActive( priceAlertDTO.getIsActive() );
+        priceAlertRequestDTO.setUserId( priceAlertResponseDTO.getUserId() );
+        priceAlertRequestDTO.setProductId( priceAlertResponseDTO.getProductId() );
+        priceAlertRequestDTO.setTargetPrice( priceAlertResponseDTO.getTargetPrice() );
 
-        return priceAlert;
+        return priceAlertRequestDTO;
+    }
+
+    private Long priceAlertProductId(PriceAlert priceAlert) {
+        Product product = priceAlert.getProduct();
+        if ( product == null ) {
+            return null;
+        }
+        return product.getId();
+    }
+
+    private String priceAlertProductName(PriceAlert priceAlert) {
+        Product product = priceAlert.getProduct();
+        if ( product == null ) {
+            return null;
+        }
+        return product.getName();
+    }
+
+    private Long priceAlertUserId(PriceAlert priceAlert) {
+        User user = priceAlert.getUser();
+        if ( user == null ) {
+            return null;
+        }
+        return user.getId();
     }
 }

@@ -21,12 +21,16 @@ org\market\pricecomparator\dto\UserDTO.class
 org\market\pricecomparator\repository\ProductRepository.class
 org\market\pricecomparator\model\entity\ShoppingListItem.class
 org\market\pricecomparator\dto\PriceEntryDTO.class
+org\market\pricecomparator\dto\ProductSubstituteDTO.class
 org\market\pricecomparator\exceptions\ResourceNotFound.class
 org\market\pricecomparator\mapper\ShoppingListMapperImpl.class
 org\market\pricecomparator\repository\ShoppingListRepository.class
 org\market\pricecomparator\controller\DiscountController.class
+org\market\pricecomparator\controller\ProductController.class
 org\market\pricecomparator\dto\StoreDTO.class
 org\market\pricecomparator\repository\BasketRepository.class
+org\market\pricecomparator\dto\PriceAlertRequestDTO.class
+org\market\pricecomparator\service\ProductService$NormalizedValue.class
 org\market\pricecomparator\mapper\StoreMapper.class
 org\market\pricecomparator\model\entity\Basket.class
 org\market\pricecomparator\model\entity\PriceAlert.class
@@ -40,8 +44,10 @@ org\market\pricecomparator\mapper\ShoppingListMapper.class
 org\market\pricecomparator\repository\PriceAlertRepository.class
 org\market\pricecomparator\controller\PriceEntryController.class
 org\market\pricecomparator\model\entity\Product.class
+org\market\pricecomparator\dto\PriceAlertResponseDTO.class
 org\market\pricecomparator\dto\PriceAlertDTO.class
 org\market\pricecomparator\exceptions\GlobalExceptionHandler.class
+org\market\pricecomparator\service\ProductService.class
 org\market\pricecomparator\mapper\PriceAlertMapperImpl.class
 org\market\pricecomparator\model\enums\MeasurementUnit.class
 org\market\pricecomparator\dto\ProductDTO.class
@@ -54,3 +60,4 @@ org\market\pricecomparator\mapper\BasketMapper.class
 org\market\pricecomparator\mapper\ShoppingListItemMapperImpl.class
 org\market\pricecomparator\repository\ShoppingListItemRepository.class
 org\market\pricecomparator\model\entity\PriceEntry.class
+org\market\pricecomparator\service\ProductService$1.class

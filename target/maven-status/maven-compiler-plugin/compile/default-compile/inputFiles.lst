@@ -1,12 +1,16 @@
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\AccesaCodingChallengeApplication.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\controller\DiscountController.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\controller\PriceEntryController.java
+C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\controller\ProductController.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\BasketDTO.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\DiscountDTO.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\GraphPointDTO.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\PriceAlertDTO.java
+C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\PriceAlertRequestDTO.java
+C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\PriceAlertResponseDTO.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\PriceEntryDTO.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\ProductDTO.java
+C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\ProductSubstituteDTO.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\ShoppingListDTO.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\ShoppingListItemDTO.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\dto\StoreDTO.java
@@ -43,4 +47,5 @@ C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\mai
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\repository\UserRepository.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\service\DiscountService.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\service\PriceEntryService.java
+C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\service\ProductService.java
 C:\Users\ioana\OneDrive - unibuc.ro\Desktop\Accesa\AccesaCodingChallenge\src\main\java\org\market\pricecomparator\utility\CSVParser.java

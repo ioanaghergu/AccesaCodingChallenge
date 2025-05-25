@@ -1,11 +1,19 @@
 package org.market.pricecomparator.mapper;
 
 import org.mapstruct.Mapper;
-import org.market.pricecomparator.dto.PriceAlertDTO;
+import org.mapstruct.Mapping;
+import org.market.pricecomparator.dto.PriceAlertRequestDTO;
+import org.market.pricecomparator.dto.PriceAlertResponseDTO;
 import org.market.pricecomparator.model.entity.PriceAlert;
 
 @Mapper(componentModel = "spring")
 public interface PriceAlertMapper {
-    PriceAlertDTO toPriceAlertDTO(PriceAlert priceAlert);
-    PriceAlert toPriceAlert(PriceAlertDTO priceAlertDTO);
+
+    @Mapping(source = "product.id", target = "productId")
+    @Mapping(source = "product.name", target = "productName")
+    @Mapping(source = "user.id", target = "userId")
+    PriceAlertResponseDTO toPriceAlertResponseDTO(PriceAlert priceAlert);
+
+    PriceAlertRequestDTO toPriceAlertRequestDTO(PriceAlertResponseDTO priceAlertResponseDTO);
+
 }
