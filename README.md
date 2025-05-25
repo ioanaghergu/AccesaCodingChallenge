@@ -47,7 +47,7 @@ The application is built upon a **layered architecture** to ensure a clear separ
 * **Product Original Price**: For discount calculations, this is typically the latest price entry for a product at a store.
 * **Newly Added Discounts**: Based on an `entryDate` field in the `Discount` entity, typically meaning "added today".
 
-## Implemented 
+## Implemented features
 
 This application implements the following features:
 
