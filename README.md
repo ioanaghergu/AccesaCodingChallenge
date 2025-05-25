@@ -21,7 +21,7 @@ The application is built upon a **layered architecture** to ensure a clear separ
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/ioanaghergu/AccesaCodingChallenge.git](https://github.com/ioanaghergu/AccesaCodingChallenge.git)
+    git clone https://github.com/ioanaghergu/AccesaCodingChallenge.git
     cd AccesaCodingChallenge
     ```
 2.  **Build with Maven:**
